@@ -25,7 +25,7 @@ var enqSchema = new mongoose.Schema({
         type:String,
         default:"submitted",
         enum:["submitted","Contacted","In Progress"]
-    }
+    } 
 });
 
 //Export the model
