@@ -1,5 +1,5 @@
 const express=require('express');
-const { createBlog, updateBlog, getBlog, getAllBlogs, deleteBlog, liketheBlog, disliketheBlog } = require('../controller/blogCtrl');
+const { createBlog, updateBlog, getBlog,  getAllBlogs, deleteBlog, liketheBlog, disliketheBlog } = require('../controller/blogCtrl');
 const { uploadImages } = require('../controller/blogCtrl');
 const router =express.Router();
 const {isAdmin,authMiddleware} =require('../middlewares/authMiddleware');
