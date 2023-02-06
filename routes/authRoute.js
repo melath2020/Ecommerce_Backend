@@ -1,5 +1,5 @@
 const express=require('express')
-const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus}=require('../controller/userCtrl');
+const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders}=require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/AuthMiddleware');
 
 const router=express.Router();
@@ -14,6 +14,7 @@ router.post('/cart/applycoupon',authMiddleware,applyCoupon );
 router.post('/cart/cash-order',authMiddleware,createOrder );
 router.get('/all-users',getallUser);
 router.get('/get-orders',authMiddleware,getOrders);
+router.get('/getallorders',authMiddleware,isAdmin,getAllOrders);
 router.get("/refresh", handleRefreshToken);
 router.post("/forgot-password-token",forgotPasswordToken)
 router.put("/order/update-order/:id",authMiddleware,isAdmin,updateOrderStatus)
