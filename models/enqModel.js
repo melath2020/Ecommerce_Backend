@@ -24,7 +24,7 @@ var enqSchema = new mongoose.Schema({
     status:{
         type:String,
         default:"submitted",
-        enum:["submitted","Contacted","In Progress"]
+        enum:["submitted","Contacted","In Progress","Resolved"]
     } 
 });
 

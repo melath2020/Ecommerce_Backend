@@ -166,6 +166,7 @@ const loginAdmin=asyncHandler(async(req,res)=>{
     })
 
   
+ 
 
     // Update a user
     const updatedUser= asyncHandler(async(req,res)=>{
@@ -473,6 +474,19 @@ const getAllOrders=asyncHandler(async(req,res)=>{
       }
 })
 
+const getOrderByUserId=asyncHandler(async(req,res)=>{
+  const {id}=req.params;
+  validateMongoDbId(id);
+  try{
+    const userorders=await Order.findOne({orderby:id}).populate("products.product").populate("orderby")
+    .exec();
+    res.json(userorders)
+  }catch(error){
+    throw new Error(error)
+  }
+})
+
+
 
   const updateOrderStatus=asyncHandler(async(req,res)=>{
     const {status}=req.body;
@@ -516,7 +530,8 @@ module.exports={
   createOrder,
   getOrders,
   updateOrderStatus,
-  getAllOrders
+  getAllOrders,
+  getOrderByUserId,
 
 
 };
