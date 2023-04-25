@@ -341,12 +341,42 @@ const loginAdmin=asyncHandler(async(req,res)=>{
 
     })
 
+   
+
+
     const getUserCart=asyncHandler(async(req,res)=>{
       const {_id}=req.user;
       validateMongoDbId(_id);
       try{
         const cart=await Cart.find({userId:_id}).populate("productId").populate("color");
         res.json(cart)
+      }catch(error){
+        throw new Error
+      }
+    })
+
+    const removeProductFromCart=asyncHandler(async(req,res)=>{
+      const { _id } = req.user;
+      const {cartItemId}=req.params;
+      validateMongoDbId(_id);
+      try{
+        const deleteProductFromCart=await Cart.deleteOne({userId:_id,_id:cartItemId})
+        res.json(deleteProductFromCart)
+      }catch(error){
+        throw new Error
+      }
+
+    })
+
+    const updateProductQuantityFromCart =asyncHandler(async(req,res)=>{
+      const { _id } = req.user;
+      const {cartItemId,newQuantity}=req.params;
+      validateMongoDbId(_id);
+      try{
+        const cartItem=await Cart.findOne({userId:_id,_id:cartItemId})
+        cartItem.quantity=newQuantity
+        cartItem.save()
+        res.json(cartItem)
       }catch(error){
         throw new Error
       }
@@ -513,6 +543,8 @@ module.exports={
   updateOrderStatus,
   getAllOrders,
   getOrderByUserId,
+  removeProductFromCart,
+  updateProductQuantityFromCart
 
 
 };
