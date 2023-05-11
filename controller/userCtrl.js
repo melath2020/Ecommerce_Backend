@@ -275,11 +275,11 @@ const loginAdmin=asyncHandler(async(req,res)=>{
     const forgotPasswordToken = asyncHandler(async (req, res) => {
       const {email}=req.body;
       const user=await User.findOne({email})
-      if(!user) throw new Error ('User Not Found ith this email')
+      if(!user) throw new Error ('User Not Found in this email')
       try{
         const token =await user.createPaswordResetToken();
         await user.save();
-        const resetURL=`Hi Please follow this link to reset your password. This link is valid till 10 minutes from now <a href='http://localhost:5000/api/user/reset-password/${token}'>Click Here</> `
+        const resetURL=`Hi Please follow this link to reset your password. This link is valid till 10 minutes from now <a href='http://localhost:3000/reset-password/${token}'>Click Here</> `
         const data={
           to:email,
           text:"Hey User",

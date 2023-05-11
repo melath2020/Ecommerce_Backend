@@ -21,7 +21,7 @@ router.get('/getmyorders',authMiddleware,getMyOrders);
 // router.get('/getallorders',authMiddleware,isAdmin,getAllOrders);
 // router.post('/getorderbyuser/:id',authMiddleware,isAdmin,getOrderByUserId);
 // router.get("/refresh", handleRefreshToken);
-// router.post("/forgot-password-token",forgotPasswordToken)
+router.post("/forgot-password-token",forgotPasswordToken)
 // router.put("/order/update-order/:id",authMiddleware,isAdmin,updateOrderStatus)
 router.put("/reset-password/:token",resetPassword)
 
