@@ -162,7 +162,7 @@ const rating=asyncHandler(async(req,res)=>{
     if(alreadyRated){
         const updateRating=await Product.updateOne(
             {
-            ratings:{elemMatch:alreadyRated}
+            ratings:{elemMatch: alreadyRated},
              },{
                 $set:{"ratings.$.star":star,"ratings.$.comment":comment}
              },{
