@@ -1,5 +1,5 @@
 const express=require('express')
-const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, getOrderByUserId, removeProductFromCart, updateProductQuantityFromCart, getMyOrders, getMonthWiseOrderIncome}=require('../controller/userCtrl');
+const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, getOrderByUserId, removeProductFromCart, updateProductQuantityFromCart, getMyOrders, getMonthWiseOrderIncome, getMonthWiseOrderCount, getYearlyTotalOrders}=require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/AuthMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
 
@@ -29,6 +29,7 @@ router.get("/logout",logout)
 router.get('/wishlist',authMiddleware,getWishlist);
 router.get('/cart',authMiddleware,getUserCart);
 router.get('/getMonthWiseOrderIncome',authMiddleware,getMonthWiseOrderIncome);
+router.get('/getYearlyTotalOrders',authMiddleware,getYearlyTotalOrders);
 
 router.get('/:id',authMiddleware,isAdmin,getaUser);
 // router.delete('/empty-cart',authMiddleware,emptyCart);
