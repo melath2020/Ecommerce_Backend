@@ -18,7 +18,7 @@ router.get('/getmyorders',authMiddleware,getMyOrders);
 // router.post('/cart/applycoupon',authMiddleware,applyCoupon );
 // router.get('/all-users',getallUser);
 
-// router.get('/getallorders',authMiddleware,isAdmin,getAllOrders);
+ router.get('/getallorders',authMiddleware,isAdmin,getAllOrders);
 // router.post('/getorderbyuser/:id',authMiddleware,isAdmin,getOrderByUserId);
 // router.get("/refresh", handleRefreshToken);
 router.post("/forgot-password-token",forgotPasswordToken)
