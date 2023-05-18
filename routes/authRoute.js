@@ -1,5 +1,5 @@
 const express=require('express')
-const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, getOrderByUserId, removeProductFromCart, updateProductQuantityFromCart, getMyOrders, getMonthWiseOrderIncome, getMonthWiseOrderCount, getYearlyTotalOrders}=require('../controller/userCtrl');
+const {createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser,handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCoupon, createOrder, getOrders, updateOrder, getAllOrders, getOrderByUserId, removeProductFromCart, updateProductQuantityFromCart, getMyOrders, getMonthWiseOrderIncome, getMonthWiseOrderCount, getYearlyTotalOrders, getSingleOrders}=require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/AuthMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
 
@@ -19,6 +19,8 @@ router.get('/getmyorders',authMiddleware,getMyOrders);
 // router.get('/all-users',getallUser);
 
  router.get('/getallorders',authMiddleware,isAdmin,getAllOrders);
+ router.get('/getOrder/:id',authMiddleware,isAdmin,getSingleOrders);
+ router.put('/updateOrder/:id',authMiddleware,isAdmin,updateOrder);
 // router.post('/getorderbyuser/:id',authMiddleware,isAdmin,getOrderByUserId);
 // router.get("/refresh", handleRefreshToken);
 router.post("/forgot-password-token",forgotPasswordToken)
